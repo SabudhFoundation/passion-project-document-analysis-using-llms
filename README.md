@@ -13,7 +13,7 @@ This project provides a comprehensivve tool to analyze and query from various ty
  - **YouTube Video Analysis**: Extract and analyze transcripts from YouTube videos to answer user queries.
  - **PDFs Processing**: Upload and process PDF files to generate response from the information provided as context to llm.
  - **Powered by LLM**: incorporates advanced models like 'llama3.2' and embedding model 'sentence-transformers/all-mpnet-base-v2' for embeddings as and queries.
--**Interactive UI**: A user friendly interface build with gradio for easy and seamless interaction.
+ - **Interactive UI**: A user friendly interface build with gradio for easy and seamless interaction.
 
 # Keyy dependencies
 
