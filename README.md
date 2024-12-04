@@ -4,6 +4,27 @@ Project Instructions
 
 This repo contains the instructions for a machine learning project.
 
+
+### Document Analysis Usng LLM
+
+This project provides a comprehensivve tool to analyze and query from various type of documents as well as youtube links , This application leverages embeddings , vector stores , and prompts to deliver well structured responses using llm based on the context provided.
+
+# Features
+ - **YouTube Video Analysis**: Extract and analyze transcripts from YouTube videos to answer user queries.
+ - **PDFs Processing**: Upload and process PDF files to generate response from the information provided as context to llm.
+ - **Powered by LLM**: incorporates advanced models like 'llama3.2' and embedding model 'sentence-transformers/all-mpnet-base-v2' for embeddings as and queries.
+-**Interactive UI**: A user friendly interface build with gradio for easy and seamless interaction.
+
+# Keyy dependencies
+
+- Langchain
+-PyPDF2
+-chroamdb
+-gradio
+
+# Run the Application
+Use the command "python src/main.py" to run the application.
+
 Project Organization
 ------------
 
