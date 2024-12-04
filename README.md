@@ -18,9 +18,12 @@ This project provides a comprehensivve tool to analyze and query from various ty
 # Keyy dependencies
 
 - Langchain
--PyPDF2
--chroamdb
--gradio
+  
+- PyPDF2
+
+- chroamdb
+
+- gradio
 
 # Run the Application
 Use the command "python src/main.py" to run the application.
