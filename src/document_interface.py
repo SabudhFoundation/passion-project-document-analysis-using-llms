@@ -1,20 +1,12 @@
 import gradio as gr
-from process_documents import process_youtube,process_csv,process_pdf
-
-# Functions to handle different types of uploads (these can be expanded or modified as needed)
+from process_documents import process_youtube,process_csv
+from gradio_img_pdf import process_pdf_with_images
 def handle_pdf(file):
-    # Your logic for handling PDF uploads
     return f"PDF file {file.name} uploaded successfully!"
-
 def handle_csv(file):
-    # Your logic for handling CSV uploads
     return f"CSV file {file.name} uploaded successfully!"
-
 def handle_youtube(link):
-    # Your logic for handling YouTube link
     return f"YouTube link '{link}' processed successfully!"
-
-
 
 # Function to handle user interaction based on the chosen input type
 def show_input(selected_option):
@@ -27,8 +19,7 @@ def show_input(selected_option):
 
 def document_analysis_interface():
     with gr.Blocks() as app:
-        gr.Markdown("# Document Analysis Interface")
-
+        # gr.Markdown("# Document Analysis Interface")
         # Radio buttons for selecting input type
         input_type = gr.Radio(
             choices=["PDF", "CSV", "YouTube"],
@@ -37,29 +28,22 @@ def document_analysis_interface():
 
         # PDF upload section
         with gr.Column(visible=False) as pdf_upload_section:
-            pdf_file = gr.File(label="Upload PDF")
+            pdf_file = gr.File(label="Upload PDF",file_types=[".pdf"])
             pdf_query = gr.Textbox(label="Enter your question", placeholder="Ask a question about the PDF")
             analyze_pdf_btn = gr.Button("Analyze PDF")
             pdf_output = gr.Textbox(label="PDF Analysis Result",interactive=False)
+            pdf_gallery = gr.Gallery(label="Relevant Images", interactive=False)
             # pdf_time_taken=gr.Textbox(label="Total time taken")
-            analyze_pdf_btn.click(process_pdf, inputs=[pdf_file, pdf_query], outputs=[pdf_output])
+            analyze_pdf_btn.click(process_pdf_with_images, inputs=[pdf_file, pdf_query], outputs=[pdf_output,pdf_gallery])
 
         # CSV upload section
         with gr.Column(visible=False) as csv_upload_section:
-            csv_file = gr.File(label="Upload CSV")
+            csv_file = gr.File(label="Upload CSV",file_types=[".csv"])
             csv_query = gr.Textbox(label="Enter your question", placeholder="Ask a question about the CSV")
             analyze_csv_btn = gr.Button("Analyze CSV")
             csv_output = gr.Textbox(label="CSV Analysis Result",interactive=False)
             # csv_time_taken=gr.Textbox(label="Total time taken")
             analyze_csv_btn.click(process_csv, inputs=[csv_file, csv_query], outputs=[csv_output])
-
-        # YouTube link section
-        # with gr.Column(visible=False) as youtube_upload_section:
-        #     youtube_link = gr.Textbox(label="Enter YouTube Link")
-        #     analyze_youtube_btn = gr.Button("Analyze YouTube")
-        #     youtube_output = gr.Textbox(label="YouTube Analysis Result")
-        #     youtube_time_taken=gr.Textbox(label="Total time taken")
-        #     analyze_youtube_btn.click(process_youtube_and_query, inputs=youtube_link, outputs=[youtube_output,youtube_time_taken])
         
         # YouTube link section
         with gr.Column(visible=False) as youtube_upload_section:

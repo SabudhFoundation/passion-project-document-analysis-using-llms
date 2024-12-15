@@ -1,5 +1,7 @@
 import gradio as gr
 from langchain_ollama import ChatOllama
+from auth import log_user_history
+# from user_history import *
 
 # Initialize the LLaMA model
 llm = ChatOllama(model="llama3.2:1b")
@@ -28,6 +30,8 @@ def ai_chat(query, chat_history):
         # Append user query and model response to the chat history
         chat_history.append({"role": "user", "content": query})
         chat_history.append({"role": "assistant", "content": response_text})
+        # if current_user_id:  # Ensure that the user ID is available and logged in
+        log_user_history(query, response_text)
 
         return "", chat_history
     except Exception as e:
@@ -52,3 +56,4 @@ def chatbot_interface():
         send_button.click(ai_chat, inputs=[query_input, chatbox], outputs=[query_input, chatbox])
         query_input.submit(ai_chat, inputs=[query_input, chatbox], outputs=[query_input, chatbox])
         clear_button.click(clear_chat, outputs=chatbox)
+
